@@ -5,33 +5,119 @@ package vehiculo;
  *
  * @author 
  */
-public class Main {
+public class VehiculoPSJ2223 {
+
+    private String nombre;
+    private double precio;
+    private double precioIVA;
+    private int stock;
+
+    /* Constructor sin argumentos */
+    public VehiculoPSJ2223 ()
+    {
+    }
+    // Constructor con parámetro para iniciar todas las propiedades de la clase
     
-      public static void main(String[] args) {
-        VehiculoXXX2223 miVehiculoXXX2223;
-        int stockActual;
-        
-        miVehiculoXXX2223 = new VehiculoXXX2223("Seat",18000,100);
-        try 
-        {
-            System.out.println("Venta de Vehiculos");
-            miVehiculoXXX2223.vender(20);
-        } catch (Exception e)
-        {
-            System.out.print("Fallo al vender");
-        }
-        
-        try
-        {
-            System.out.println("Compra de Vehiculos");
-            miVehiculoXXX2223.comprar(100);
-        } catch (Exception e)
-        {
-            System.out.print("Fallo al comprar");
-        }
-        stockActual = miVehiculoXXX2223.obtenerStock();
-        System.out.println("El stock actual es "+ stockActual );
+    
+    public VehiculoPSJ2223 (String nom, double precio, int stock)
+    {
+        this.nombre =nom;
+        this.precio=precio;
+        this.stock=stock;
+    }
+   // Método para asignar el nombre del vehiculo
+    public void asignarNombre(String nom)
+    {
+        setNombre(nom);
+    }
+    // Método que me devuelve el nombre del vehiculo
+    public String obtenerNombre()
+    {
+        return getNombre();
     }
 
-}
+    // Método que me devuelve el stock de vehiculos disponible en cada momento
+     public int obtenerStock ()
+    {
+        return getStock();
+    }
+
+    /* Método para comprar vehiculos. Modifica el stock.
+     * Este método va a ser probado con Junit
+     */
+    public void comprar(int cantidad) throws Exception
+    {
+        if (cantidad<0)
+            throw new Exception("No se puede comprar un nº negativo de vehiculos");
+        setStock(getStock() + cantidad);
+    }
+
+    public void vender (int cantidad) throws Exception
+    {
+        if (cantidad <= 0)
+            throw new Exception ("No se puede vender una cantidad negativa de vehiculos");
+        if (obtenerStock()< cantidad)
+            throw new Exception ("No se hay suficientes vehiculos para vender");
+        setStock(getStock() - cantidad);
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the precio
+     */
+    public double getPrecio() {
+        return precio;
+    }
+
+    /**
+     * @param precio the precio to set
+     */
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    /**
+     * @return the precioIVA
+     */
+    public double getPrecioIVA() {
+        return precioIVA;
+    }
+
+    /**
+     * @param precioIVA the precioIVA to set
+     */
+    public void setPrecioIVA(double precioIVA) {
+        this.precioIVA = precioIVA;
+    }
+
+    /**
+     * @return the stock
+     */
+    public int getStock() {
+        return stock;
+    }
+
+    /**
+     * @param stock the stock to set
+     */
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
     
+}  
+   
+    
+
